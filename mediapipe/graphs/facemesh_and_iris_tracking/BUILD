@@ -31,13 +31,6 @@ cc_library(
         "//mediapipe/graphs/iris_tracking/subgraphs:iris_and_depth_renderer_gpu",
         "//mediapipe/modules/face_landmark:face_landmark_front_gpu",
         "//mediapipe/modules/iris_landmark:iris_landmark_left_and_right_gpu",
-
-        "//mediapipe/calculators/core:gate_calculator",
-        "//mediapipe/calculators/core:immediate_mux_calculator",
-        "//mediapipe/calculators/image:image_properties_calculator",
-        "//mediapipe/framework/tool:switch_container",
-        "//mediapipe/graphs/face_effect/subgraphs:single_face_geometry_from_landmarks_gpu",
-        "//mediapipe/modules/face_geometry:env_generator_calculator",
     ],
 )
 
