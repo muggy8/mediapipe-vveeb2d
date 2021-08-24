@@ -11,10 +11,6 @@ output_stream: "output_video"
 # Face landmarks with iris. (NormalizedLandmarkList)
 output_stream: "iris_landmarks"
 output_stream: "face_landmarks"
-output_stream: "right_eye_contour_landmarks"
-output_stream: "left_eye_contour_landmarks"
-output_stream: "left_iris_landmarks"
-output_stream: "right_iris_landmarks"
 
 # Throttles the images flowing downstream for flow control. It passes through
 # the very first incoming image unaltered, and waits for downstream nodes
@@ -83,24 +79,6 @@ node {
     [type.googleapis.com/mediapipe.SplitVectorCalculatorOptions] {
       ranges: { begin: 0 end: 1 }
       element_only: true
-    }
-  }
-}
-
-# Generates an environment that describes the current virtual scene.
-node {
-  calculator: "FaceGeometryEnvGeneratorCalculator"
-  output_side_packet: "ENVIRONMENT:environment"
-  node_options: {
-    [type.googleapis.com/mediapipe.FaceGeometryEnvGeneratorCalculatorOptions] {
-      environment: {
-        origin_point_location: TOP_LEFT_CORNER
-        perspective_camera: {
-          vertical_fov_degrees: 63.0  # 63 degrees
-          near: 1.0  # 1cm
-          far: 10000.0  # 100m
-        }
-      }
     }
   }
 }

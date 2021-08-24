@@ -1,6 +1,12 @@
 bazel build -c opt --strip=ALWAYS \
     --host_crosstool_top=@bazel_tools//tools/cpp:toolchain \
     --fat_apk_cpu=arm64-v8a,armeabi-v7a \
+    //mediapipe/examples/android/src/java/com/google/mediapipe/apps/custom_detection:custom_detection.aar
+	
+
+bazel build -c opt --strip=ALWAYS \
+    --host_crosstool_top=@bazel_tools//tools/cpp:toolchain \
+    --fat_apk_cpu=arm64-v8a,armeabi-v7a \
     --action_env="rebuild=1" \
     --sandbox_debug \
     //mediapipe/examples/android/src/java/com/google/mediapipe/apps/custom_detection:custom_detection.aar
@@ -14,3 +20,11 @@ bazel build -c opt mediapipe/modules/face_geometry/data:geometry_pipeline_metada
 
 bazel build -c opt --config=android_arm64 mediapipe/examples/android/src/java/com/google/mediapipe/apps/faceeffect:faceeffect
 bazel build -c opt --config=android_arm64 mediapipe/examples/android/src/java/com/google/mediapipe/apps/custom_detection:customtrackinggpu
+
+wsl --export docker-desktop docker-desktop.tar 
+wsl --export docker-desktop-data docker-desktop-data.tar 
+wsl --unregister docker-desktop
+wsl --unregister docker-desktop-data
+wsl --import docker-desktop D:/docker/docker-desktop docker-desktop.tar
+wsl --import docker-desktop-data D:/docker/docker-desktop-data docker-desktop-data.tar
+
