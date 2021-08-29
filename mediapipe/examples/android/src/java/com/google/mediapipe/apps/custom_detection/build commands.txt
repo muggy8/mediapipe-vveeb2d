@@ -2,7 +2,8 @@ bazel build -c opt --strip=ALWAYS \
     --host_crosstool_top=@bazel_tools//tools/cpp:toolchain \
     --fat_apk_cpu=arm64-v8a,armeabi-v7a \
     //mediapipe/examples/android/src/java/com/google/mediapipe/apps/custom_detection:custom_detection.aar
-	
+
+ cp bazel-bin/mediapipe/examples/android/src/java/com/google/mediapipe/apps/custom_detection/custom_detection.aar .
 
 bazel build -c opt --strip=ALWAYS \
     --host_crosstool_top=@bazel_tools//tools/cpp:toolchain \
@@ -14,6 +15,10 @@ bazel build -c opt --strip=ALWAYS \
 	
 	
 bazel build -c opt mediapipe/graphs/facemesh_and_iris_tracking:custom_tracking_gpu_binary_graph
+
+bazel build -c opt mediapipe/graphs/face_effect:face_effect_gpu_binary_graph
+cp bazel-bin/mediapipe/graphs/face_effect/face_effect_gpu.binarypb .
+
 bazel build -c opt mediapipe/modules/face_geometry/data:geometry_pipeline_metadata_detection
 bazel build -c opt mediapipe/modules/face_geometry/data:geometry_pipeline_metadata_landmarks
 

@@ -11,6 +11,8 @@ output_stream: "output_video"
 # Face landmarks with iris. (NormalizedLandmarkList)
 output_stream: "iris_landmarks"
 output_stream: "face_landmarks"
+output_stream: "updated_face_landmarks"
+output_stream: "face_landmarks_with_iris"
 
 # Throttles the images flowing downstream for flow control. It passes through
 # the very first incoming image unaltered, and waits for downstream nodes
@@ -155,4 +157,11 @@ node {
   input_side_packet: "FOCAL_LENGTH:focal_length_pixel"
   output_stream: "IRIS_LANDMARKS:iris_landmarks"
   output_stream: "IMAGE:output_video"
+}
+
+node {
+  calculator: "ConcatenateNormalizedLandmarkListCalculator"
+  input_stream: "updated_face_landmarks"
+  input_stream: "iris_landmarks"
+  output_stream: "face_landmarks_with_iris"
 }
