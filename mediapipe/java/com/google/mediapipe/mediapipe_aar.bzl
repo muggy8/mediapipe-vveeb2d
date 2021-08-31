@@ -110,6 +110,7 @@ EOF
             "com/google/mediapipe/formats/proto/LandmarkProto.java",
             "com/google/mediapipe/formats/proto/LocationDataProto.java",
             "com/google/mediapipe/proto/CalculatorProto.java",
+            "com/google/mediapipe/formats/proto/MatrixDataProto.java",
         ],
         manifest = "AndroidManifest.xml",
         proguard_specs = ["//mediapipe/java/com/google/mediapipe/framework:proguard.pgcfg"],
@@ -142,6 +143,8 @@ EOF
             "@maven//:com_google_flogger_flogger_system_backend",
             "@maven//:com_google_guava_guava",
             "@maven//:androidx_lifecycle_lifecycle_common",
+            "//mediapipe/framework/formats:matrix_data_java_proto_lite",
+            "//mediapipe/modules/face_geometry/protos:face_geometry_java_proto_lite",
         ] + select({
             "//conditions:default": [":" + name + "_jni_opencv_cc_lib"],
             "//mediapipe/framework/port:disable_opencv": [],
@@ -204,6 +207,15 @@ def _mediapipe_proto(name):
         name = "classification_proto",
         proto_src = "mediapipe/framework/formats/classification.proto",
         java_lite_out = "com/google/mediapipe/formats/proto/ClassificationProto.java",
+        srcs = [
+            "//mediapipe/framework/formats:protos_src",
+        ],
+    )
+
+    _proto_java_src_generator(
+        name = "matrix_data_proto",
+        proto_src = "mediapipe/framework/formats/matrix_data.proto",
+        java_lite_out = "com/google/mediapipe/formats/proto/MatrixDataProto.java",
         srcs = [
             "//mediapipe/framework/formats:protos_src",
         ],
