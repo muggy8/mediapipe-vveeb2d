@@ -111,6 +111,8 @@ EOF
             "com/google/mediapipe/formats/proto/LocationDataProto.java",
             "com/google/mediapipe/proto/CalculatorProto.java",
             "com/google/mediapipe/formats/proto/MatrixDataProto.java",
+            "com/google/mediapipe/modules/facegeometry/Mesh3dProto.java",
+            "com/google/mediapipe/modules/facegeometry/FaceGeometryProto.java",
         ],
         manifest = "AndroidManifest.xml",
         proguard_specs = ["//mediapipe/java/com/google/mediapipe/framework:proguard.pgcfg"],
@@ -217,6 +219,26 @@ def _mediapipe_proto(name):
         proto_src = "mediapipe/framework/formats/matrix_data.proto",
         java_lite_out = "com/google/mediapipe/formats/proto/MatrixDataProto.java",
         srcs = [
+            "//mediapipe/framework/formats:protos_src",
+        ],
+    )
+
+    _proto_java_src_generator(
+        name = "face_geometry_proto",
+        proto_src = "mediapipe/modules/face_geometry/protos/face_geometry.proto",
+        java_lite_out = "com/google/mediapipe/modules/facegeometry/FaceGeometryProto.java",
+        srcs = [
+            "//mediapipe/modules/face_geometry/protos:protos_src",
+            "//mediapipe/framework/formats:protos_src",
+        ],
+    )
+    
+    _proto_java_src_generator(
+        name = "mesh_3d_proto",
+        proto_src = "mediapipe/modules/face_geometry/protos/mesh_3d.proto",
+        java_lite_out = "com/google/mediapipe/modules/facegeometry/Mesh3dProto.java",
+        srcs = [
+            "//mediapipe/modules/face_geometry/protos:protos_src",
             "//mediapipe/framework/formats:protos_src",
         ],
     )
