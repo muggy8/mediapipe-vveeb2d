@@ -12,6 +12,8 @@ output_stream: "output_video"
 output_stream: "updated_face_landmarks"
 output_stream: "face_landmarks_with_iris"
 output_stream: "multi_face_geometry"
+output_stream: "refined_eye_landmarks"
+output_stream: "iris_landmarks"
 
 # Throttles the images flowing downstream for flow control. It passes through
 # the very first incoming image unaltered, and waits for downstream nodes
@@ -196,7 +198,7 @@ node {
 # Applies smoothing to the single set of face landmarks.
 node {
   calculator: "FaceLandmarksSmoothing"
-  input_stream: "NORM_LANDMARKS:updated_face_landmarks"
+  input_stream: "NORM_LANDMARKS:face_landmarks"
   input_stream: "IMAGE_SIZE:input_image_size"
   output_stream: "NORM_FILTERED_LANDMARKS:smoothed_face_landmarks"
 }
