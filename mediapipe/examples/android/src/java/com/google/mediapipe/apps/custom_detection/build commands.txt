@@ -27,3 +27,4 @@ bazel build -c opt mediapipe/graphs/face_effect/data:glasses
 
 bazel build -c opt --config=android_arm64 mediapipe/examples/android/src/java/com/google/mediapipe/apps/faceeffect:faceeffect
 bazel build -c opt --config=android_arm64 mediapipe/examples/android/src/java/com/google/mediapipe/apps/custom_detection:customtrackinggpu
+bazel build -c opt --config=android_arm64 mediapipe/examples/android/src/java/com/google/mediapipe/apps/iristrackinggpu:iristrackinggpu
